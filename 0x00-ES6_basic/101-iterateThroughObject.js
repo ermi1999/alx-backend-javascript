@@ -1,10 +1,10 @@
 export default function iterateThroughObject(reportWithIterator) {
-  let text = '';
+  let text = "";
   let i = 0;
   for (const item of reportWithIterator) {
-    text += i ? ' | ' : '';
+    text += i ? " | " : "";
     text += `${item}`;
     i += 1;
   }
-  console.log(text);
+  return text;
 }
