@@ -9,10 +9,8 @@ export default async function handleProfileSignup(
   return Promise.allSettled([
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
-  ]).then((responses) =>
-    responses.map((res) => ({
-      status: res.status,
-      value: res.value === 'fulfilled' ? res.value : res.reason,
-    })),
-  );
+  ]).then((responses) => responses.map((res) => ({
+    status: res.status,
+    value: res.value === 'fulfilled' ? res.value : res.reason,
+  })));
 }
