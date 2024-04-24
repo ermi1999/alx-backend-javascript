@@ -12,7 +12,7 @@ export default async function handleProfileSignup(
   ]).then((responses) =>
     responses.map((res) => ({
       status: res.status,
-      value: res.value,
+      value: res.value === 'fulfilled' ? res.value : res.reason,
     })),
   );
 }
