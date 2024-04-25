@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 export default class Car {
   constructor(brand, motor, color) {
     this.brand = brand;
@@ -5,40 +6,37 @@ export default class Car {
     this.color = color;
   }
 
-  set brand(newBrand) {
-    if (typeof newBrand !== 'string') {
-      throw new TypeError('Brand must be a string');
-    }
-    this._brand = newBrand;
-  }
-
   get brand() {
     return this._brand;
   }
 
-  set motor(newMotor) {
-    if (typeof newMotor !== 'string') {
-      throw new TypeError('Motor must be a string');
-    }
-    this._motor = newMotor;
+  set brand(value) {
+    this._brand = value;
   }
 
   get motor() {
     return this._motor;
   }
 
-  set color(newColor) {
-    if (typeof newColor !== 'string') {
-      throw new TypeError('Color must be a string');
-    }
-    this._color = newColor;
+  set motor(value) {
+    this._motor = value;
   }
 
   get color() {
     return this._color;
   }
 
+  set color(value) {
+    this._color = value;
+  }
+
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
-    return new this.constructor(this._brand, this._motor, this._color);
+    const Species = this.constructor[Symbol.species];
+
+    return new Species();
   }
 }
